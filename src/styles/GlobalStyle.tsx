@@ -10,6 +10,7 @@ const GlobalStyle = css`
   }
 
   * {
+    box-sizing: border-box;
     font-family: 'DotGothic16', sans-serif;
     font-size: 1rem;
   }
@@ -17,8 +18,6 @@ const GlobalStyle = css`
   main {
     max-width: 1280px;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
   }
 `;
 
