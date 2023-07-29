@@ -9,6 +9,18 @@ const GlobalStyle = css`
     outline: none;
   }
 
+  button {
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input:focus {
+    outline: none;
+  }
+
   * {
     box-sizing: border-box;
     font-family: 'DotGothic16', sans-serif;
