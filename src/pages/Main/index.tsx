@@ -1,23 +1,38 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
+import { Container, Button, PageTitle } from '../../styles/styles';
 
 const Main = () => {
   return (
     <Container>
-      <Button to={'/signin'}>로그인</Button>
-      <Button to={'/signup'}>회원가입</Button>
+      <Wrap>
+        <LogoBox>
+          <img src={logo} alt="나뭇잎 그림" />
+          <PageTitle>Green Todo</PageTitle>
+        </LogoBox>
+        <ButtonBox>
+          <Button>
+            <Link to={'/signin'}>로그인</Link>
+          </Button>
+          <Button>
+            <Link to={'/signup'}>회원가입</Link>
+          </Button>
+        </ButtonBox>
+      </Wrap>
     </Container>
   );
 };
 export default Main;
 
-const Container = styled.main``;
+const Wrap = styled.div`
+  max-width: 700px;
+`;
 
-const Button = styled(Link)`
-  padding: 10px 30px;
-  border-radius: 10px;
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.white};
-  font-weight: 700;
-  background-color: ${({ theme }) => theme.colors.green_main};
+const LogoBox = styled.div`
+  gap: 20px;
+`;
+
+const ButtonBox = styled.div`
+  gap: 15px;
 `;
