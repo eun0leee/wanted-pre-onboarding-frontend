@@ -1,13 +1,6 @@
-import styled from '@emotion/styled';
 import Auth from 'src/components/Auth';
 
 const SignIn = () => {
-  return (
-    <Container>
-      <Auth moveto="/todo" btnName="로그인" />
-    </Container>
-  );
+  return <Auth title="Login" moveto="/todo" btnName="로그인" />;
 };
 export default SignIn;
-
-const Container = styled.main``;
