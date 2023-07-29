@@ -12,12 +12,12 @@ const Main = () => {
           <PageTitle>Green Todo</PageTitle>
         </LogoBox>
         <ButtonBox>
-          <Button>
-            <Link to={'/signin'}>로그인</Link>
-          </Button>
-          <Button>
-            <Link to={'/signup'}>회원가입</Link>
-          </Button>
+          <Link to={'/signin'}>
+            <Button>로그인</Button>
+          </Link>
+          <Link to={'/signup'}>
+            <Button>회원가입</Button>
+          </Link>
         </ButtonBox>
       </Wrap>
     </Container>
