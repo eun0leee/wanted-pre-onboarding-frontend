@@ -22,18 +22,19 @@ const Auth = ({ title, moveto, btnName }: IAuth) => {
     e.preventDefault();
 
     if (title === 'Sign Up') {
-      const data = await signup(email, password);
-      if (data.status === 400) {
-        confirm(data.data.message);
+      const response = await signup(email, password);
+      if (response.status === 400) {
+        confirm(response.data.message);
       } else {
         confirm('회원가입이 완료됐습니다.');
         navigate(moveto);
       }
     } else if (title === 'Login') {
-      const data = await signin(email, password);
-      if (data.status === 401) {
+      const response = await signin(email, password);
+      if (response.status === 401) {
         confirm('이메일과 비밀번호를 다시 확인해주세요.');
       } else {
+        localStorage.setItem('token', response.data.access_token);
         navigate(moveto);
       }
     }
