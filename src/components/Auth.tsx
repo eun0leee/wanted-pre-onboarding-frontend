@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signin, signup } from 'src/api/api';
 import { Container, Button, PageTitle } from '../styles/styles';
 
 interface IAuth {
@@ -17,14 +18,25 @@ const Auth = ({ title, moveto, btnName }: IAuth) => {
   const isEmailValid = email.includes('@');
   const isPasswordValid = password.length >= 8;
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (title === 'Sign Up') {
-      confirm('로그인 페이지로 이동합니다.');
+      const data = await signup(email, password);
+      if (data.status === 400) {
+        confirm(data.data.message);
+      } else {
+        confirm('회원가입이 완료됐습니다.');
+        navigate(moveto);
+      }
+    } else if (title === 'Login') {
+      const data = await signin(email, password);
+      if (data.status === 401) {
+        confirm('이메일과 비밀번호를 다시 확인해주세요.');
+      } else {
+        navigate(moveto);
+      }
     }
-
-    navigate(moveto);
   };
 
   return (
@@ -70,7 +82,7 @@ const Form = styled.form`
     border: 1px solid #e0e0e0;
     color: #757575;
 
-    &:first-child {
+    &:first-of-type {
       border-bottom: none;
     }
   }
