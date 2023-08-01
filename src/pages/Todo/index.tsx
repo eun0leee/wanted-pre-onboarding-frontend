@@ -13,6 +13,10 @@ const Todo = () => {
 
   console.log(todoList);
 
+  const handleDelete = (id: number) => {
+    setTodoList(todoList.filter((todo) => todo.id !== id));
+  };
+
   const handleCheckbox = (id: number) => {
     setTodoList(
       todoList.map((todo) =>
@@ -56,7 +60,11 @@ const Todo = () => {
               <button data-testid="modify-button" type="button">
                 수정
               </button>
-              <button data-testid="delete-button" type="button">
+              <button
+                data-testid="delete-button"
+                type="button"
+                onClick={() => handleDelete(todo.id)}
+              >
                 삭제
               </button>
             </label>
