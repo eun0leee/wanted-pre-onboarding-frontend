@@ -24,6 +24,7 @@ const Todo = () => {
 
     setTodoList(todoList.concat(todo));
     setCount(count + 1);
+    setText('');
   };
   return (
     <>
@@ -31,6 +32,7 @@ const Todo = () => {
         <input
           data-testid="new-todo-input"
           type="text"
+          value={text}
           onChange={(e) => setText(e.target.value)}
         />
         <button data-testid="new-todo-add-button" type="submit">
