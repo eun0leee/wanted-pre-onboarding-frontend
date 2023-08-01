@@ -10,8 +10,11 @@ const Todo = () => {
   const [text, setText] = useState('');
   const [count, setCount] = useState(1);
   const [todoList, setTodoList] = useState<ITodo[]>([]);
+  // const [isEdit, setIsEdit] = useState(false);
 
   console.log(todoList);
+
+  // const handleEdit = (id: number) => {};
 
   const handleDelete = (id: number) => {
     setTodoList(todoList.filter((todo) => todo.id !== id));
@@ -28,15 +31,19 @@ const Todo = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const todo: ITodo = {
-      id: count,
-      text,
-      checked: false,
-    };
+    if (text === '') {
+      confirm('Todo를 입력해주세요! 😀');
+    } else {
+      const todo: ITodo = {
+        id: count,
+        text,
+        checked: false,
+      };
 
-    setTodoList(todoList.concat(todo));
-    setCount(count + 1);
-    setText('');
+      setTodoList(todoList.concat(todo));
+      setCount(count + 1);
+      setText('');
+    }
   };
   return (
     <>
@@ -57,7 +64,11 @@ const Todo = () => {
             <label>
               <input type="checkbox" onClick={() => handleCheckbox(todo.id)} />
               <span>{todo.text}</span>
-              <button data-testid="modify-button" type="button">
+              <button
+                data-testid="modify-button"
+                type="button"
+                // onClick={() => handleEdit(todo.id)}
+              >
                 수정
               </button>
               <button
