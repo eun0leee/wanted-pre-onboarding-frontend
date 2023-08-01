@@ -3,7 +3,7 @@ import { useState } from 'react';
 interface ITodo {
   id: number;
   text: string;
-  check: boolean;
+  checked: boolean;
 }
 
 const Todo = () => {
@@ -13,13 +13,21 @@ const Todo = () => {
 
   console.log(todoList);
 
+  const handleCheckbox = (id: number) => {
+    setTodoList(
+      todoList.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+      ),
+    );
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const todo: ITodo = {
       id: count,
       text,
-      check: false,
+      checked: false,
     };
 
     setTodoList(todoList.concat(todo));
@@ -43,7 +51,7 @@ const Todo = () => {
         {todoList.map((todo) => (
           <li key={todo.id}>
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" onClick={() => handleCheckbox(todo.id)} />
               <span>{todo.text}</span>
               <button data-testid="modify-button" type="button">
                 수정
